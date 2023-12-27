@@ -26,10 +26,7 @@
         >
           <v-row>
             <v-col cols="1" align-self="center">
-              <v-img
-                :src="`http://localhost:3001${product.imageurl}`"
-                height="50"
-              />
+              <v-img :src="baseUrl + product.imageurl" height="50" />
             </v-col>
 
             <v-col cols="7" align="start">
@@ -56,10 +53,12 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import SearchFilter from "@/components/SearchFilter.vue";
+import { useBaseUrl } from "@/compositionFunctions/useBaseUrl";
 
 export default {
   data() {
     return {
+      baseUrl: useBaseUrl().baseURL,
       searchQuery: "",
       showFilter: false,
     };

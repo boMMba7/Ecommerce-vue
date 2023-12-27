@@ -24,11 +24,13 @@
 </template>
 
 <script>
+import { useBaseUrl } from "@/compositionFunctions/useBaseUrl";
 import { mapGetters } from "vuex";
 
 export default {
   data() {
     return {
+      baseUrl: useBaseUrl().baseURL,
       title: "",
       description: "",
       imageUrl: null,
@@ -49,7 +51,7 @@ export default {
     const { category_name, description, image_url } = selectedCategory;
     this.title = category_name;
     this.description = description;
-    this.imageUrl = "http://localhost:3001" + image_url;
+    this.imageUrl = this.baseUrl + image_url;
   },
 };
 </script>

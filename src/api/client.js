@@ -1,8 +1,8 @@
 import { create } from "apisauce";
+import { useBaseUrl } from "@/compositionFunctions/useBaseUrl";
 
 const eCommerceApi = create({
-  baseURL: "http://localhost:3001",
-  // baseURL: import.meta.env.VITE_API_URL,
+  baseURL: useBaseUrl().baseURL,
   headers: { apitoken: import.meta.env.VITE_API_KEY },
 });
 

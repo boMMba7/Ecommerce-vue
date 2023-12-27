@@ -1,12 +1,12 @@
 <template>
   <div>
-    <v-card class="mx-auto my-3 pb-4" max-width="200" @click="goToProduct">
+    <v-card class="mx-auto my-3 pb-4" max-width="230" @click="goToProduct">
       <v-hover v-slot="{ isHovering, props }">
         <v-expand-transition>
           <v-img
             height="250"
             class="mx-4"
-            :src="`http://localhost:3001${imageUrl}`"
+            :src="baseUrl + imageUrl"
             :style="{ transform: isHovering ? 'scale(1.9)' : 'scale(1)' }"
           />
         </v-expand-transition>
@@ -37,12 +37,14 @@
 </template>
 
 <script>
+import { useBaseUrl } from "@/compositionFunctions/useBaseUrl";
 import AddButton from "./AddButton.vue";
 import { mapActions } from "vuex";
 
 export default {
   data() {
     return {
+      baseUrl: useBaseUrl().baseURL,
       name: "",
       description: "",
       imageUrl: "",

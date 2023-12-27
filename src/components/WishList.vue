@@ -45,7 +45,7 @@
               />
             </v-col>
             <v-col :cols="colsImage" align="center">
-              <v-img :src="`http://localhost:3001${product.imageurl}`" />
+              <v-img :src="baseUrl + product.imageurl" />
             </v-col>
 
             <v-col :cols="colsName" align="center">
@@ -79,9 +79,11 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import AddButton from "./AddButton.vue";
+import { useBaseUrl } from "@/compositionFunctions/useBaseUrl";
 export default {
   data() {
     return {
+      baseUrl: useBaseUrl().baseURL,
       colsDelete: 2,
       colsImage: 1,
       colsName: 3,

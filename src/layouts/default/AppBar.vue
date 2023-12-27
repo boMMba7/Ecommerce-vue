@@ -42,6 +42,7 @@ import { mapState, mapGetters } from "vuex";
 
 import BadgeButtons from "@/components/navigation/BadgeButtons.vue";
 import NavMenu from "@/components/navigation/NavMenu.vue";
+import ViewBannerName from "@/components/ViewBannerName.vue";
 
 export default {
   data() {
@@ -64,6 +65,7 @@ export default {
   components: {
     BadgeButtons,
     NavMenu,
+    ViewBannerName,
   },
 
   methods: {

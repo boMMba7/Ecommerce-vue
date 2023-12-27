@@ -20,11 +20,7 @@
           </v-col>
           <v-col>
             <v-card>
-              <v-img
-                :src="`http://localhost:3001${slide.imageurl}`"
-                class="pa-10"
-                cover
-              />
+              <v-img :src="baseUrl + slide.imageurl" class="pa-10" cover />
             </v-card>
           </v-col>
         </div>
@@ -47,12 +43,15 @@ const colors = [
 import products from "@/api/products";
 import { useApi } from "@/compositionFunctions/useApi";
 import AddButton from "./AddButton.vue";
+import { useBaseUrl } from "@/compositionFunctions/useBaseUrl";
+
 export default {
   components: {
     AddButton,
   },
   data() {
     return {
+      baseUrl: useBaseUrl().baseURL,
       colors: [
         "indigo",
         "warning",
@@ -67,15 +66,18 @@ export default {
       ],
     };
   },
+  beforeMount() {
+    this.getProducts();
+  },
+
+  computed: {},
+
   methods: {
     async getProducts() {
       const productsApi = useApi(products.getTopProducts);
       const result = await productsApi.request(5);
       if (result.ok) this.slides = result.data;
     },
-  },
-  beforeMount() {
-    this.getProducts();
   },
 };
 </script>
