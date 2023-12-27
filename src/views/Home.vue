@@ -1,9 +1,11 @@
 <template>
-  <CategoryBanner v-show="selectedCategory()" />
-  <Carousel v-show="!selectedCategory()" />
-  <TopProducts />
+  <v-container>
+    <CategoryBanner v-show="selectedCategory()" />
+    <Carousel v-show="!selectedCategory()" />
+    <TopProducts />
 
-  <Products :title="selectedCategory()?.category_name" :products="products" />
+    <Products :title="selectedCategory()?.category_name" :products="products" />
+  </v-container>
 </template>
 
 <script>

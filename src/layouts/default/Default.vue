@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <Navbar />
+    <AppBar />
     <default-view />
     <Footer />
   </v-app>
@@ -8,8 +8,9 @@
 
 <script setup>
 import DefaultView from "./View.vue";
-import Navbar from "../../components/navigation/Navbar.vue";
-import Footer from "@/components/Footer.vue";
+
+import Footer from "@/layouts/default/Footer.vue";
+import AppBar from "@/layouts/default/AppBar.vue";
 </script>
 
 <script>
@@ -18,7 +19,7 @@ export default {
     return {};
   },
   components: {
-    Navbar,
+    AppBar,
     Footer,
   },
   methods: {},

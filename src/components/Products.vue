@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card :title="title">
+    <v-card :title="title" flat>
       <v-row>
         <v-col v-for="product in products" :key="product.id">
           <Product :product="product" />

@@ -19,6 +19,22 @@ const routes = [
         name: "Checkout",
         component: () => import("@/views/CheckOut.vue"),
       },
+      {
+        path: "/wishlist",
+        name: "Wishlist",
+        component: () => import("@/views/Wishlist.vue"),
+      },
+      {
+        path: "/product/:productId",
+        name: "Product",
+        props: true,
+        component: () => import("@/views/ProductView.vue"),
+      },
+      {
+        path: "/search",
+        name: "Search",
+        component: () => import("@/views/Search.vue"),
+      },
     ],
   },
 ];

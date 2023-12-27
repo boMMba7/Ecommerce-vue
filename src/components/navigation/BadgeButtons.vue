@@ -1,9 +1,14 @@
 <template>
-  <div class="icon">
+  <div class="icon" @click="navigateToSearch">
     <v-icon>mdi-magnify</v-icon>
   </div>
   <div class="icon">
-    <v-badge inline :content="heartNumber" color="red">
+    <v-badge
+      inline
+      :content="heartNumber"
+      color="red"
+      @click="navigateToWishlist"
+    >
       <v-icon>mdi-heart-outline</v-icon>
     </v-badge>
   </div>
@@ -31,11 +36,18 @@ export default {
 
   computed: {
     ...mapGetters("cart", { cartTotal: "getTotalProducts" }),
+    ...mapGetters("wishlist", { wishlistTotal: "getTotalProducts" }),
   },
 
   methods: {
     navigateToCheckout() {
       this.$router.push({ name: "Checkout" });
+    },
+    navigateToWishlist() {
+      this.$router.push({ name: "Wishlist" });
+    },
+    navigateToSearch() {
+      this.$router.push({ name: "Search" });
     },
   },
 
@@ -43,6 +55,11 @@ export default {
     cartTotal(newTotal, oldTotal) {
       if (newTotal !== oldTotal) {
         this.cartNumber = newTotal;
+      }
+    },
+    wishlistTotal(newTotal, oldTotal) {
+      if (newTotal !== oldTotal) {
+        this.heartNumber = newTotal;
       }
     },
   },

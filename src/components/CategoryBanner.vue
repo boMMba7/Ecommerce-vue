@@ -8,19 +8,17 @@
               <v-card-text>
                 <p outline block class="py-5">{{ description }}</p>
               </v-card-text>
-              <v-card-actions>
-                <v-btn outline block class="primary pa-2">Buy Now</v-btn>
-              </v-card-actions>
-            </v-sheet></v-col
-          >
+            </v-sheet>
+          </v-col>
           <v-col>
             <v-sheet class="pa-2 ma-2">
               <v-expand-x-transition>
                 <v-img :src="imageUrl" :width="300" aspect-ratio="16/9" cover />
               </v-expand-x-transition>
             </v-sheet>
-          </v-col> </v-row
-      ></v-card>
+          </v-col>
+        </v-row>
+      </v-card>
     </v-container>
   </div>
 </template>
@@ -44,7 +42,11 @@ export default {
     },
   },
   updated() {
-    const { category_name, description, image_url } = this.selectedCategory();
+    const selectedCategory = this.selectedCategory();
+
+    if (!selectedCategory) return;
+
+    const { category_name, description, image_url } = selectedCategory;
     this.title = category_name;
     this.description = description;
     this.imageUrl = "http://localhost:3001" + image_url;

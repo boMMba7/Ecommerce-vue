@@ -14,7 +14,7 @@
               </div>
 
               <v-card-actions transition="expand-x-transition">
-                <AddButton :product="slide" />
+                <AddButton :product="slide" :cartOnly="true" />
               </v-card-actions>
             </v-row>
           </v-col>

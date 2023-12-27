@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card class="mx-auto my-12 pb-4" max-width="200">
+    <v-card class="mx-auto my-3 pb-4" max-width="200" @click="goToProduct">
       <v-hover v-slot="{ isHovering, props }">
         <v-expand-transition>
           <v-img
@@ -15,9 +15,6 @@
           <v-card-title class="text-center">{{ name }}</v-card-title>
         </v-card-item>
         <v-card-text>
-          <div class="text-center">
-            {{ description }}
-          </div>
           <v-row align="center" class="mx-0 mt-2">
             <v-rating
               :model-value="rating"
@@ -30,6 +27,9 @@
             <v-spacer></v-spacer>
             <div class="text-grey ms-4">{{ price }}</div>
           </v-row>
+          <v-row>
+            <AddButton :product="product" />
+          </v-row>
         </v-card-text>
       </v-hover>
     </v-card>
@@ -37,6 +37,9 @@
 </template>
 
 <script>
+import AddButton from "./AddButton.vue";
+import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -56,6 +59,21 @@ export default {
     this.imageUrl = imageurl;
     this.price = price;
     this.rating = rating;
+  },
+
+  components: { AddButton },
+
+  methods: {
+    ...mapActions("product", ["setCurrentProduct"]),
+
+    goToProduct() {
+      this.setCurrentProduct(this.product);
+
+      this.$router.push({
+        name: "Product",
+        params: { productId: this.product.id },
+      });
+    },
   },
 };
 </script>

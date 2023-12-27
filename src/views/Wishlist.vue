@@ -1,11 +1,11 @@
 <template>
   <div>
-    <CartList />
+    <Wishlist />
   </div>
 </template>
 
 <script>
-import CartList from "@/components/cart/CartList.vue";
+import Wishlist from "@/components/WishList.vue";
 
 export default {
   data() {
@@ -15,7 +15,7 @@ export default {
   },
 
   components: {
-    CartList,
+    Wishlist,
   },
 };
 </script>
