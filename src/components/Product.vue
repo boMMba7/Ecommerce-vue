@@ -28,7 +28,7 @@
             <div class="text-grey ms-4">{{ price }}</div>
           </v-row>
           <v-row>
-            <AddButton :product="product" />
+            <AddButton :product="product" @button-clicked="handleChieldClick" />
           </v-row>
         </v-card-text>
       </v-hover>
@@ -55,6 +55,7 @@ export default {
       imageUrl: "",
       price: "",
       rating: null,
+      chieldComponentClik: false,
     };
   },
   name: "Product",
@@ -74,12 +75,19 @@ export default {
     ...mapActions("product", ["setCurrentProduct"]),
 
     goToProduct() {
+      // prevent the navegate to product if click on child components " Add to cart / wishlist"
+      if (this.chieldComponentClik) return (this.chieldComponentClik = false);
+
       this.setCurrentProduct(this.product);
 
       this.$router.push({
         name: "Product",
         params: { productId: this.product.id },
       });
+    },
+
+    handleChieldClick() {
+      this.chieldComponentClik = true;
     },
   },
 };

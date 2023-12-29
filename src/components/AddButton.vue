@@ -4,7 +4,7 @@
       <v-col v-show="!cartOnly">
         <v-btn
           :prepend-icon="iconName"
-          @click="onPressWishlist"
+          @click.stop="onPressWishlist"
           variant="plain"
         >
           <template v-slot:prepend>
@@ -19,7 +19,7 @@
           prepend-icon="mdi-cart-outline"
           class="mt-0"
           size="small"
-          @click="addProduct(product)"
+          @click="handleaddCart"
         >
           Add to cart
         </v-btn>
@@ -54,12 +54,23 @@ export default {
   methods: {
     ...mapActions("cart", ["addProduct"]),
     ...mapActions("wishlist", ["addProductWishlist", "removeProductWishList"]),
+
     onPressWishlist() {
+      // Notify the parent component that the button is pressed
+      this.$emit("button-clicked");
+
       if (this.iconName === "mdi-heart") {
         this.removeProductWishList(this.product.id);
       } else {
         this.addProductWishlist(this.product);
       }
+    },
+
+    handleaddCart() {
+      // Notify the parent component that the button is pressed
+      this.$emit("button-clicked");
+
+      this.addProduct(this.product);
     },
   },
 };
