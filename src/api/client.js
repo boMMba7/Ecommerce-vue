@@ -1,5 +1,4 @@
 import { create } from "apisauce";
-import { useBaseUrl } from "@/compositionFunctions/useBaseUrl";
 
 const eCommerceApi = create({
   // baseURL: "http://localhost:3001",

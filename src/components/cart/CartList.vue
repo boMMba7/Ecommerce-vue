@@ -45,7 +45,7 @@
               />
             </v-col>
             <v-col :cols="colsImage" align="center">
-              <v-img :src="baseURL + product.imageurl" />
+              <v-img :src="apiURL + product.imageurl" />
             </v-col>
 
             <v-col :cols="colsName" align="center">
@@ -117,18 +117,12 @@
 </template>
 
 <script>
-import { useBaseUrl } from "@/compositionFunctions/useBaseUrl";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
-  setup() {
-    const { baseURL } = useBaseUrl();
-
-    return { baseURL };
-  },
-
   data() {
     return {
+      apiURL: import.meta.env.VITE_API_URL,
       colsDelete: 2,
       colsImage: 1,
       colsName: 3,

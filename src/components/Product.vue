@@ -6,7 +6,7 @@
           <v-img
             height="250"
             class="mx-4"
-            :src="baseURL + imageUrl"
+            :src="apiURL + imageUrl"
             :style="{ transform: isHovering ? 'scale(1.9)' : 'scale(1)' }"
           />
         </v-expand-transition>
@@ -37,19 +37,13 @@
 </template>
 
 <script>
-import { useBaseUrl } from "@/compositionFunctions/useBaseUrl";
 import AddButton from "./AddButton.vue";
 import { mapActions } from "vuex";
 
 export default {
-  setup() {
-    const { baseURL } = useBaseUrl();
-
-    return { baseURL };
-  },
-
   data() {
     return {
+      apiURL: import.meta.env.VITE_API_URL,
       name: "",
       description: "",
       imageUrl: "",

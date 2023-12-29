@@ -26,7 +26,7 @@
         >
           <v-row>
             <v-col cols="1" align-self="center">
-              <v-img :src="baseURL + product.imageurl" height="50" />
+              <v-img :src="apiURL + product.imageurl" height="50" />
             </v-col>
 
             <v-col cols="7" align="start">
@@ -53,20 +53,16 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import SearchFilter from "@/components/SearchFilter.vue";
-import { useBaseUrl } from "@/compositionFunctions/useBaseUrl";
 
 export default {
   data() {
     return {
+      apiURL: import.meta.env.VITE_API_URL,
       searchQuery: "",
       showFilter: false,
     };
   },
-  setup() {
-    const { baseURL } = useBaseUrl();
 
-    return { baseURL };
-  },
   components: {
     SearchFilter,
   },
