@@ -26,7 +26,7 @@
         >
           <v-row>
             <v-col cols="1" align-self="center">
-              <v-img :src="baseUrl + product.imageurl" height="50" />
+              <v-img :src="baseURL + product.imageurl" height="50" />
             </v-col>
 
             <v-col cols="7" align="start">
@@ -58,10 +58,14 @@ import { useBaseUrl } from "@/compositionFunctions/useBaseUrl";
 export default {
   data() {
     return {
-      baseUrl: useBaseUrl().baseURL,
       searchQuery: "",
       showFilter: false,
     };
+  },
+  setup() {
+    const { baseURL } = useBaseUrl();
+
+    return { baseURL };
   },
   components: {
     SearchFilter,

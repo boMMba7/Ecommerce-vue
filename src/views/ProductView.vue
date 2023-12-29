@@ -3,7 +3,7 @@
     <v-card class="pa-15">
       <v-row>
         <v-col cols="4" xs="12" sm="8" md="4">
-          <v-img :src="baseUrl + product.imageurl" width="300" />
+          <v-img :src="baseURL + product.imageurl" width="300" />
         </v-col>
         <v-col cols="8" xs="12" sm="6" md="8">
           <v-card-title>
@@ -31,9 +31,14 @@ import { useBaseUrl } from "@/compositionFunctions/useBaseUrl";
 import { mapGetters } from "vuex";
 
 export default {
+  setup() {
+    const { baseURL } = useBaseUrl();
+
+    return { baseURL };
+  },
+
   data() {
     return {
-      baseUrl: useBaseUrl().baseURL,
       product: null,
     };
   },

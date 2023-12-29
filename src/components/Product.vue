@@ -6,7 +6,7 @@
           <v-img
             height="250"
             class="mx-4"
-            :src="baseUrl + imageUrl"
+            :src="baseURL + imageUrl"
             :style="{ transform: isHovering ? 'scale(1.9)' : 'scale(1)' }"
           />
         </v-expand-transition>
@@ -42,9 +42,14 @@ import AddButton from "./AddButton.vue";
 import { mapActions } from "vuex";
 
 export default {
+  setup() {
+    const { baseURL } = useBaseUrl();
+
+    return { baseURL };
+  },
+
   data() {
     return {
-      baseUrl: useBaseUrl().baseURL,
       name: "",
       description: "",
       imageUrl: "",

@@ -28,9 +28,14 @@ import { useBaseUrl } from "@/compositionFunctions/useBaseUrl";
 import { mapGetters } from "vuex";
 
 export default {
+  setup() {
+    const { baseURL } = useBaseUrl();
+
+    return { baseURL };
+  },
+
   data() {
     return {
-      baseUrl: useBaseUrl().baseURL,
       title: "",
       description: "",
       imageUrl: null,

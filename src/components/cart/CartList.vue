@@ -45,7 +45,7 @@
               />
             </v-col>
             <v-col :cols="colsImage" align="center">
-              <v-img :src="baseUrl + product.imageurl" />
+              <v-img :src="baseURL + product.imageurl" />
             </v-col>
 
             <v-col :cols="colsName" align="center">
@@ -121,9 +121,14 @@ import { useBaseUrl } from "@/compositionFunctions/useBaseUrl";
 import { mapGetters, mapActions } from "vuex";
 
 export default {
+  setup() {
+    const { baseURL } = useBaseUrl();
+
+    return { baseURL };
+  },
+
   data() {
     return {
-      baseUrl: useBaseUrl().baseURL,
       colsDelete: 2,
       colsImage: 1,
       colsName: 3,

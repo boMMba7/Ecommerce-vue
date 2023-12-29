@@ -18,10 +18,5 @@ export default {
       return this.$route.name;
     },
   },
-  mounted() {
-    console.log("====================================");
-    console.log(this.$route);
-    console.log("====================================");
-  },
 };
 </script>

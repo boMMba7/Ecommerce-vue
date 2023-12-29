@@ -20,7 +20,7 @@
           </v-col>
           <v-col>
             <v-card>
-              <v-img :src="baseUrl + slide.imageurl" class="pa-10" cover />
+              <v-img :src="baseURL + slide.imageurl" class="pa-10" cover />
             </v-card>
           </v-col>
         </div>
@@ -37,6 +37,9 @@ const colors = [
   "red lighten-1",
   "deep-purple accent-4",
 ];
+
+// if declare script setup, the setup() hook will not fire
+const { baseURL } = useBaseUrl();
 </script>
 
 <script>
@@ -46,12 +49,8 @@ import AddButton from "./AddButton.vue";
 import { useBaseUrl } from "@/compositionFunctions/useBaseUrl";
 
 export default {
-  components: {
-    AddButton,
-  },
   data() {
     return {
-      baseUrl: useBaseUrl().baseURL,
       colors: [
         "indigo",
         "warning",
@@ -70,6 +69,9 @@ export default {
     this.getProducts();
   },
 
+  components: {
+    AddButton,
+  },
   computed: {},
 
   methods: {
