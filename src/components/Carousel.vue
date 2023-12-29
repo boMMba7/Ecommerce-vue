@@ -60,7 +60,7 @@ export default {
       ],
       slides: [
         {
-          imageurl: "/img/log.png",
+          imageurl: null,
         },
       ],
     };
