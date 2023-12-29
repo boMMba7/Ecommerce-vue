@@ -58,11 +58,7 @@ export default {
         "red lighten-1",
         "deep-purple accent-4",
       ],
-      slides: [
-        {
-          imageurl: null,
-        },
-      ],
+      slides: [],
     };
   },
   beforeMount() {
