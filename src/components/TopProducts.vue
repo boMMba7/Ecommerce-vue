@@ -40,6 +40,7 @@ export default {
     Product,
   },
   methods: {
+    // TODO: put this in product store
     async getTopProducts() {
       const productsApi = useApi(products.getTopProducts);
 

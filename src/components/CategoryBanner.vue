@@ -45,7 +45,6 @@ export default {
     this.title = category_name;
     this.description = description;
     this.imageUrl = this.apiURL + image_url;
-    console.log("URL:", this.apiURL + image_url);
   },
   computed: {
     ...mapGetters("category", ["getLoading"]),

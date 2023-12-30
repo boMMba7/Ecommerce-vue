@@ -21,7 +21,6 @@ const mutations = {
   quantityIncreased(state, productId) {
     state.products = state.products.map((product) => {
       if (product.id === productId) {
-        console.log(product.quantity);
         return { ...product, quantity: ++product.quantity };
       } else {
         return product;

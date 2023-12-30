@@ -12,7 +12,7 @@ const findProducts = (filter) => {
   const query = {
     filter,
   };
-  console.log(query);
+
   return eCommerceApi.get("/products/find", query);
 };
 
