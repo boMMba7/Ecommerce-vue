@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container class="ma-5">
-      <v-card :title="title">
+      <v-card :title="title" :loading="getLoading">
         <v-row justify="center">
           <v-col>
             <v-sheet class="pa-2 ma-2">
@@ -35,13 +35,7 @@ export default {
       apiURL: import.meta.env.VITE_API_URL,
     };
   },
-  methods: {
-    ...mapGetters("category", { selectedCategory: "getSelectedCategory" }),
-    onActionButtonClick() {
-      // Handle order button click
-      console.log("Order button clicked");
-    },
-  },
+
   updated() {
     const selectedCategory = this.selectedCategory();
 
@@ -52,6 +46,17 @@ export default {
     this.description = description;
     this.imageUrl = this.apiURL + image_url;
     console.log("URL:", this.apiURL + image_url);
+  },
+  computed: {
+    ...mapGetters("category", ["getLoading"]),
+  },
+
+  methods: {
+    ...mapGetters("category", { selectedCategory: "getSelectedCategory" }),
+    onActionButtonClick() {
+      // Handle order button click
+      console.log("Order button clicked");
+    },
   },
 };
 </script>

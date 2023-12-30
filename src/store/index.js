@@ -5,7 +5,7 @@ import wishlist from "./modules/wishlist";
 import product from "./modules/product";
 import search from "./modules/search";
 
-const debug = import.meta.env.PROD;
+const debug = process.env.NODE_ENV !== "production";
 
 export default createStore({
   modules: {

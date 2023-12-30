@@ -5,10 +5,18 @@ import { useApi } from "@/compositionFunctions/useApi";
 const state = () => ({
   searchProducts: [],
   filterCategories: [],
+  loading: false,
 });
 
 //          MUTATION
 const mutations = {
+  apiCallBegin(state) {
+    state.loading = true;
+  },
+  apiCallEnded(state) {
+    state.loading = false;
+  },
+
   searchProductsChanged(state, products) {
     state.searchProducts = products;
   },
@@ -32,6 +40,10 @@ const getters = {
       return searchProducts;
     }
   },
+
+  getLoading(state) {
+    return state.loading;
+  },
 };
 
 //          ACTIONS
@@ -40,7 +52,9 @@ const actions = {
     try {
       const productsApi = useApi(products.findProducts);
 
+      commit("apiCallBegin");
       const result = await productsApi.request(criteria);
+      commit("apiCallEnded");
 
       if (result.ok) {
         commit("searchProductsChanged", result.data);

@@ -4,6 +4,7 @@
     min-width="100"
     class="max-auto fixed-app-bar"
     color="grey-lighten-3"
+    :loading="getLoading"
   >
     <v-app-bar
       color="teal-darken"
@@ -53,6 +54,7 @@ export default {
   },
 
   computed: {
+    ...mapGetters("category", ["getLoading"]),
     ...mapState({
       categories: (state) => state.category.categories,
     }),

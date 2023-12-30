@@ -16,7 +16,7 @@
       <SearchFilter />
     </v-row>
 
-    <v-card height="400" class="overflow-y-auto">
+    <v-card height="400" class="overflow-y-auto" :loading="getLoading">
       <v-list>
         <v-list-item
           v-for="(product, i) in getSearchProducts"
@@ -69,6 +69,8 @@ export default {
 
   computed: {
     ...mapGetters("search", ["getSearchProducts"]),
+    ...mapGetters("search", ["getLoading"]),
+
     quantityResultText() {
       const quantity = this.getSearchProducts.length;
       const text = quantity < 2 ? `${quantity} result` : `${quantity} results`;
