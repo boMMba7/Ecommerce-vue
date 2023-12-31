@@ -1,6 +1,10 @@
 <template>
   <v-carousel cycle height="400" hide-delimiter-background show-arrows="hover">
-    <v-card :loading="getLoading" title="Loading..."></v-card>
+    <v-card
+      :loading="getLoading"
+      title="Loading..."
+      subtitle="The API is hosted on free instance, can take a bit longer to make first request after inativite. thanks for your patience"
+    ></v-card>
     <v-carousel-item v-for="(slide, i) in slides" :key="i">
       <v-card :color="colors[i]" height="100%">
         <div class="mx-12 d-flex fill-height justify-center align-center">
