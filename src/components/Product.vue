@@ -15,7 +15,7 @@
           <v-card-title class="text-center">{{ name }}</v-card-title>
         </v-card-item>
         <v-card-text>
-          <v-row align="center" class="mx-0 mt-2">
+          <v-row justify="center" class="my-2">
             <v-rating
               :model-value="rating"
               color="amber"
@@ -24,9 +24,8 @@
               readonly
               size="small"
             ></v-rating>
-            <v-spacer></v-spacer>
-            <div class="text-grey ms-4">{{ price }}</div>
           </v-row>
+          <v-row class="text-grey" justify="center"> £ {{ price }} </v-row>
           <v-row>
             <AddButton :product="product" @button-clicked="handleChieldClick" />
           </v-row>

@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -14,8 +15,15 @@ export default {
     };
   },
   computed: {
+    ...mapGetters("category", ["getSelectedCategory"]),
     dynamicTitle() {
-      return this.$route.name;
+      const page = this.$route.name;
+      const categogy = this.getSelectedCategory;
+
+      if (categogy && page === "Home") {
+        return categogy.title;
+      }
+      return page;
     },
   },
 };

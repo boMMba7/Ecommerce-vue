@@ -3,29 +3,31 @@
     <v-icon>mdi-magnify</v-icon>
   </div>
   <div class="icon">
-    <v-badge
-      inline
-      :content="heartNumber"
-      color="red"
+    <v-btn
+      icon
       @click="navigateToWishlist"
+      @mouseover="heartMouseOuver"
+      @mouseleave="heartMouseLeave"
     >
-      <v-icon>mdi-heart-outline</v-icon>
-    </v-badge>
+      <v-icon class="mr-n3">mdi-heart-outline</v-icon>
+      <v-badge inline :content="heartNumber" color="red"></v-badge>
+    </v-btn>
   </div>
   <div class="icon">
-    <v-badge
-      inline
-      :content="cartNumber"
-      color="red"
+    <v-btn
+      icon
       @click="navigateToCheckout"
+      @mouseover="cartMouseOver"
+      @mouseleave="cartMouseLeave"
     >
-      <v-icon>mdi-cart-outline</v-icon>
-    </v-badge>
+      <v-icon class="mr-n3">mdi-cart-outline</v-icon>
+      <v-badge inline :content="cartNumber" color="red"></v-badge>
+    </v-btn>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   data() {
     return {
@@ -40,6 +42,7 @@ export default {
   },
 
   methods: {
+    ...mapActions("drawer", ["openDrawer", "closeDrawer"]),
     navigateToCheckout() {
       this.$router.push({ name: "Checkout" });
     },
@@ -48,6 +51,19 @@ export default {
     },
     navigateToSearch() {
       this.$router.push({ name: "Search" });
+    },
+
+    cartMouseOver() {
+      this.openDrawer("cart");
+    },
+    cartMouseLeave() {
+      this.closeDrawer("cart");
+    },
+    heartMouseOuver() {
+      this.openDrawer("wishlist");
+    },
+    heartMouseLeave() {
+      this.closeDrawer("wishlist");
     },
   },
 

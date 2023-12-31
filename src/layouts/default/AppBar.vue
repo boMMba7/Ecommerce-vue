@@ -32,14 +32,14 @@
 
       <template v-slot:append>
         <BadgeButtons />
-        <v-btn icon="mdi-menu" @click="openDrawer"> </v-btn>
+        <v-btn icon="mdi-account-outline" @click="onAccounClick"> </v-btn>
       </template>
     </v-app-bar>
   </v-card>
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapState, mapGetters, mapActions } from "vuex";
 
 import BadgeButtons from "@/components/navigation/BadgeButtons.vue";
 import NavMenu from "@/components/navigation/NavMenu.vue";
@@ -54,7 +54,10 @@ export default {
   },
 
   computed: {
+    ...mapGetters("drawer", ["getIsOpen"]),
+
     ...mapGetters("category", ["getLoading"]),
+
     ...mapState({
       categories: (state) => state.category.categories,
     }),
@@ -71,8 +74,17 @@ export default {
   },
 
   methods: {
-    openDrawer() {
-      this.drawer = !this.drawer;
+    ...mapActions("drawer", ["openDrawer", "closeDrawer"]),
+
+    onAccounClick() {
+      this.openDrawer("user");
+      // if (this.getIsOpen) {
+      //   console.log("closing");
+      //   this.closeDrawer();
+      // } else {
+      //   console.log("openig");
+      //   this.openDrawer();
+      // }
     },
 
     navigateToHome() {
