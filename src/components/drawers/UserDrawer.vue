@@ -1,13 +1,18 @@
 <template>
   <v-card :loading="getUserLoading">
     <v-navigation-drawer v-model="userDrawerOpen" temporary location="right">
-      <v-card-text class="text--red" v-show="getUserErroMessage">{{
-        getUserErroMessage
-      }}</v-card-text>
+      <v-card-text v-show="getUserErroMessage" class="text-error">
+        {{ getUserErroMessage }}
+      </v-card-text>
+      <v-card-text v-show="getUserSuccessMessage" class="text-success">
+        {{ getUserSuccessMessage }}
+      </v-card-text>
+
       <div v-if="getUser">
         <v-list-item
           prepend-avatar="https://randomuser.me/api/portraits/men/78.jpg"
-          :title="getUser.firstName"
+          :title="`${getUser.firstName} ${getUser.lastName} `"
+          :subtitle="getUser.email"
         >
         </v-list-item>
 
@@ -36,7 +41,9 @@
 
             <v-card-text>
               <v-window v-model="tab">
-                <v-window-item value="one"> LOGIN... </v-window-item>
+                <v-window-item value="one">
+                  <LoginForm />
+                </v-window-item>
 
                 <v-window-item value="two">
                   <RegisterForm />
@@ -51,18 +58,25 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import RegisterForm from "@/components/RegisterForm.vue";
+import LoginForm from "../LoginForm.vue";
 
 export default {
   data() {
     return {
       tab: null,
+      timmeOut: null,
     };
+  },
+
+  beforeUnmount() {
+    if (this.timmeOut) clearTimeout(this.timmeOut);
   },
 
   components: {
     RegisterForm,
+    LoginForm,
   },
 
   computed: {
@@ -71,7 +85,38 @@ export default {
       return this.$store.getters["drawer/isDrawerOpen"]("user");
     },
 
-    ...mapGetters("user", ["getUser", "getUserLoading", "getUserErroMessage"]),
+    ...mapGetters("user", [
+      "getUser",
+      "getUserLoading",
+      "getUserErroMessage",
+      "getUserSuccessMessage",
+    ]),
+  },
+
+  methods: {
+    ...mapActions("user", ["cleanMessages"]),
+  },
+
+  watch: {
+    getUserErroMessage(newState, holdState) {
+      if (newState) {
+        if (this.timmeOut) clearTimeout(this.timmeOut);
+
+        this.timmeOut = setTimeout(() => {
+          this.cleanMessages();
+        }, 10000);
+      }
+    },
+
+    getUserSuccessMessage(newState, holdState) {
+      if (newState) {
+        if (this.timmeOut) clearTimeout(this.timmeOut);
+
+        this.timmeOut = setTimeout(() => {
+          this.cleanMessages();
+        }, 10000);
+      }
+    },
   },
 };
 </script>

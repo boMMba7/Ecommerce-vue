@@ -7,6 +7,7 @@ const state = () => ({
   user: null,
   loading: false,
   erroMessage: null,
+  successMessage: null,
 });
 
 //          MUTATIONS
@@ -19,13 +20,19 @@ const mutations = {
     state.erroMessage = error?.message;
   },
 
-  newUserRegistered(state, user) {
+  newUserRegistered(state, data) {
     state.loading = false;
-    state.user = user;
+    state.successMessage = data.message;
   },
+
   userLoggedIn(state, user) {
     state.loading = false;
     state.user = user;
+  },
+
+  messagesClened(state) {
+    state.erroMessage = null;
+    state.successMessage = null;
   },
 };
 
@@ -42,6 +49,9 @@ const getters = {
   getUserErroMessage(state) {
     return state.erroMessage;
   },
+  getUserSuccessMessage(state) {
+    return state.successMessage;
+  },
 };
 
 //          ACTIONS
@@ -53,7 +63,7 @@ const actions = {
         funcName: "register",
         args: { user: userInfo },
         onStart: "user/userRequested",
-        onSuccess: "user/newUserCreated",
+        onSuccess: "user/registSuccefull",
         onError: "user/requestFail",
       };
 
@@ -63,12 +73,37 @@ const actions = {
     }
   },
 
+  registSuccefull({ commit }, data) {
+    commit("newUserRegistered", data);
+  },
+
+  async login({ dispatch }, loginInfo) {
+    try {
+      const payload = {
+        apiName: "auth",
+        funcName: "login",
+        args: { ...loginInfo },
+        onStart: "user/userRequested",
+        onSuccess: "user/loginSuccefull",
+        onError: "user/requestFail",
+      };
+
+      dispatch("api/callBegan", payload, { root: true });
+    } catch (error) {
+      console.error("Unexpected error", error);
+    }
+  },
+
+  loginSuccefull({ commit }, data) {
+    commit("userLoggedIn", data);
+  },
+
   requestFail({ commit }, error) {
     commit("requestedFail", error);
   },
 
-  newUserCreated({ commit }, user) {
-    commit("newUserRegistered", user);
+  cleanMessages({ commit }) {
+    commit("messagesClened");
   },
 };
 

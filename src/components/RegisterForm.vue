@@ -1,6 +1,6 @@
 <template>
   <v-sheet>
-    <form @submit.prevent="submitForm">
+    <v-form @submit.prevent="submitForm">
       <v-text-field
         v-model="state.firstName"
         :error-messages="v$.firstName.$errors.map((e) => e.$message)"
@@ -31,6 +31,7 @@
         v-model="state.password"
         :error-messages="v$.password.$errors.map((e) => e.$message)"
         label="Password"
+        type="password"
         required
         @input="v$.password.$touch"
         @blur="v$.password.$touch"
@@ -48,15 +49,27 @@
       <v-checkbox
         v-model="state.checkbox"
         :error-messages="v$.checkbox.$errors.map((e) => e.$message)"
-        label="Do you agree?"
+        label="I agree with T&C."
         required
         @change="v$.checkbox.$touch"
         @blur="v$.checkbox.$touch"
       />
 
-      <v-btn type="submit" class="me-4" @click="v$.$validate"> submit </v-btn>
-      <v-btn @click="clear"> clear </v-btn>
-    </form>
+      <br />
+
+      <v-btn
+        @click="v$.$validate"
+        :disabled="getUserLoading"
+        :loading="getUserLoading"
+        block
+        color="success"
+        size="large"
+        type="submit"
+        variant="elevated"
+      >
+        submit
+      </v-btn>
+    </v-form>
   </v-sheet>
 </template>
 
@@ -92,13 +105,13 @@ const rules = {
 
 const v$ = useVuelidate(rules, state);
 
-function clear() {
+const clear = () => {
   v$.value.$reset();
 
   for (const [key, value] of Object.entries(initialState)) {
     state[key] = value;
   }
-}
+};
 
 function submitForm() {
   // Validate the form
@@ -109,4 +122,22 @@ function submitForm() {
     store.dispatch("user/registerNewUser", state);
   }
 }
+</script>
+
+<script>
+import { mapGetters } from "vuex";
+
+export default {
+  computed: {
+    ...mapGetters("user", ["getUserSuccessMessage", "getUserLoading"]),
+  },
+
+  watch: {
+    getUserSuccessMessage(newState) {
+      if (newState) {
+        // clear()
+      }
+    },
+  },
+};
 </script>

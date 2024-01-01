@@ -1,6 +1,8 @@
 import { eCommerceApi } from "./client";
 
-const login = (username, password) =>
-  eCommerceApi.post("/auth", { username, password });
+const login = (body) => {
+  console.log("BODY", body);
+  return eCommerceApi.post("/auth", body);
+};
 
 export default { login };
