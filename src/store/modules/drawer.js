@@ -27,7 +27,6 @@ const mutations = {
 //          GETTERS
 const getters = {
   isDrawerOpen: (state) => (drawerName) => {
-    console.log("drawerName", drawerName);
     return state.drawerStates[drawerName];
   },
 };

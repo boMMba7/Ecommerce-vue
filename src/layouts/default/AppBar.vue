@@ -32,7 +32,6 @@
 
       <template v-slot:append>
         <BadgeButtons />
-        <v-btn icon="mdi-account-outline" @click="onAccounClick"> </v-btn>
       </template>
     </v-app-bar>
   </v-card>
@@ -54,8 +53,6 @@ export default {
   },
 
   computed: {
-    ...mapGetters("drawer", ["getIsOpen"]),
-
     ...mapGetters("category", ["getLoading"]),
 
     ...mapState({
@@ -75,17 +72,6 @@ export default {
 
   methods: {
     ...mapActions("drawer", ["openDrawer", "closeDrawer"]),
-
-    onAccounClick() {
-      this.openDrawer("user");
-      // if (this.getIsOpen) {
-      //   console.log("closing");
-      //   this.closeDrawer();
-      // } else {
-      //   console.log("openig");
-      //   this.openDrawer();
-      // }
-    },
 
     navigateToHome() {
       this.$router.push({ name: "Home" });

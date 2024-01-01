@@ -24,6 +24,11 @@
       <v-badge inline :content="cartNumber" color="red"></v-badge>
     </v-btn>
   </div>
+  <div class="icon">
+    <v-btn icon @click="onAccounClick">
+      <v-icon>mdi-account-outline</v-icon>
+    </v-btn>
+  </div>
 </template>
 
 <script>
@@ -39,6 +44,10 @@ export default {
   computed: {
     ...mapGetters("cart", { cartTotal: "getTotalProducts" }),
     ...mapGetters("wishlist", { wishlistTotal: "getTotalProducts" }),
+    //must to be this way to send argument to getter using currier functions
+    userDrawerOpen() {
+      return this.$store.getters["drawer/isDrawerOpen"]("user");
+    },
   },
 
   methods: {
@@ -64,6 +73,14 @@ export default {
     },
     heartMouseLeave() {
       this.closeDrawer("wishlist");
+    },
+
+    onAccounClick() {
+      if (this.userDrawerOpen) {
+        this.closeDrawer("user");
+      } else {
+        this.openDrawer("user");
+      }
     },
   },
 
