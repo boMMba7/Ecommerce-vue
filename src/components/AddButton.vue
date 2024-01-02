@@ -6,6 +6,7 @@
           :prepend-icon="iconName"
           @click.stop="onPressWishlist"
           variant="plain"
+          block
         >
           <template v-slot:prepend>
             <v-icon color="red"></v-icon>
@@ -20,6 +21,8 @@
           class="mt-0"
           size="small"
           @click="handleaddCart"
+          color="lightblue"
+          block
         >
           Add to cart
         </v-btn>

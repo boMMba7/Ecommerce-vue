@@ -6,7 +6,9 @@
       :close-on-content-click="false"
     >
       <template v-slot:activator="{ props }">
-        <v-btn color="primary" v-bind="props"> {{ title }} </v-btn>
+        <v-btn variant="plain" v-bind="props" append-icon="mdi-chevron-down">
+          {{ title }}
+        </v-btn>
       </template>
 
       <v-list>

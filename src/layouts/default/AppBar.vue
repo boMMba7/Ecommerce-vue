@@ -3,7 +3,6 @@
     max-width="448"
     min-width="100"
     class="max-auto fixed-app-bar"
-    color="grey-lighten-3"
     :loading="getLoading"
   >
     <v-app-bar
@@ -11,11 +10,14 @@
       fixed
       scroll-behavior="collapse  elevate"
       @scroll="handleScroll"
-      :style="{ maxWidth: isCollapsed ? '260px' : '100%' }"
+      :style="{
+        transition: 'max-width 0.5s',
+        'max-width': isCollapsed ? '260px' : '100%',
+      }"
     >
       <template v-slot:image>
         <v-img
-          gradient="to top right, rgba(19,84,122,.8), rgba(128,208,199,.8)"
+          gradient="to top right, rgba(20,198,255,.8), rgba(130,177,255,.8)"
         ></v-img>
       </template>
 

@@ -1,75 +1,88 @@
 <template>
   <div>
     <v-container>
-      <v-card flat min-width="900" class="overflow-x-auto">
-        <v-row>
-          <v-col :cols="colsDelete" align="center">
-            <h3 class="overflow-x-auto">Delete</h3>
-          </v-col>
-
-          <v-col :cols="colsImage" align="center">
-            <h3>Image</h3>
-          </v-col>
-
-          <v-col :cols="colsName" align="center">
-            <h3>Product</h3>
-          </v-col>
-
-          <v-col :cols="colsPrice" align="center">
-            <h3>Price</h3>
-          </v-col>
-
-          <v-col :cols="colsQuant" align="center">
-            <h3>Stoke</h3>
-          </v-col>
-
-          <v-col :cols="colsTotal" align="center">
-            <h3>Add to cart</h3>
-          </v-col>
-        </v-row>
-        <transition-group name="fade">
-          <v-row
-            v-for="(product, index) in getProductsInWishlist"
-            :key="index"
-            align="center"
-            class="pa-2"
-          >
+      <v-card flat class="overflow-x-auto">
+        <v-card color="accent" class="py-2">
+          <v-row>
             <v-col :cols="colsDelete" align="center">
-              <v-btn
-                @click="removeProductWishList(product.id)"
-                icon="mdi-delete-forever"
-                variant="outlined"
-                width="30"
-                height="30"
-                color="red"
-              />
+              <v-card-title>Delete</v-card-title>
             </v-col>
+
             <v-col :cols="colsImage" align="center">
-              <v-img :src="apiURL + product.imageurl" />
+              <v-card minWidth="90px" flat color="transparent">
+                <v-card-title>Image</v-card-title>
+              </v-card>
             </v-col>
 
             <v-col :cols="colsName" align="center">
-              <v-card-title>{{ product.name }}</v-card-title>
+              <v-card-title>Product</v-card-title>
             </v-col>
 
             <v-col :cols="colsPrice" align="center">
-              <v-card-text> £ {{ product.price.toFixed(2) }} </v-card-text>
+              <v-card-title>Price</v-card-title>
             </v-col>
 
             <v-col :cols="colsQuant" align="center">
-              <v-row align="center">
-                <v-card-text class="mr-n10"> In Stock </v-card-text>
-              </v-row>
+              <v-card-title>Stoke</v-card-title>
             </v-col>
 
-            <v-col :cols="colsTotal" align="start">
-              <AddButton :product="product" :cartOnly="true" />
+            <v-col :cols="colsTotal" align="center">
+              <v-card-title>Add to cart</v-card-title>
             </v-col>
           </v-row>
-        </transition-group>
+        </v-card>
+        <v-card>
+          <v-list>
+            <transition-group name="fade">
+              <v-list-item
+                v-for="(product, index) in getProductsInWishlist"
+                :key="index"
+                align="center"
+                class="pa-2"
+              >
+                <v-row>
+                  <v-col :cols="colsDelete" align="center">
+                    <v-btn
+                      @click="removeProductWishList(product.id)"
+                      icon="mdi-delete-forever"
+                      variant="outlined"
+                      width="30"
+                      height="30"
+                      color="red"
+                    />
+                  </v-col>
+                  <v-col :cols="colsImage" align="center">
+                    <v-img :src="apiURL + product.imageurl" />
+                  </v-col>
+
+                  <v-col :cols="colsName" align="center">
+                    <v-list-item-title>{{ product.name }}</v-list-item-title>
+                  </v-col>
+
+                  <v-col :cols="colsPrice" align="center">
+                    <v-list-item-title>
+                      £ {{ product.price.toFixed(2) }}
+                    </v-list-item-title>
+                  </v-col>
+
+                  <v-col :cols="colsQuant" align="center">
+                    <v-list-item-title> In Stock </v-list-item-title>
+                  </v-col>
+
+                  <v-col :cols="colsTotal" align="center" class="ms-n6">
+                    <AddButton :product="product" :cartOnly="true" />
+                  </v-col>
+                  <v-divider class="mt-2" />
+                </v-row>
+                <v-divider class="mt-2" />
+              </v-list-item>
+            </transition-group>
+          </v-list>
+        </v-card>
       </v-card>
       <v-card v-if="!hasProduct()" flat class="pa-15" align="center">
-        <h3>Cart is empty...</h3>
+        <v-card-title>Cart is empty...</v-card-title>
+        <br />
         <router-link to="./"> Back to Home Page </router-link>
       </v-card>
     </v-container>
@@ -86,10 +99,10 @@ export default {
       apiURL: import.meta.env.VITE_API_URL,
       colsDelete: 2,
       colsImage: 1,
-      colsName: 3,
+      colsName: 2,
       colsPrice: 2,
       colsQuant: 2,
-      colsTotal: 2,
+      colsTotal: 3,
     };
   },
   computed: {

@@ -34,7 +34,7 @@
       <div v-else>
         <v-container>
           <v-card>
-            <v-tabs v-model="tab" bg-color="secondary">
+            <v-tabs v-model="tab" bg-color="accent">
               <v-tab value="one">Login</v-tab>
               <v-tab value="two">Register</v-tab>
             </v-tabs>

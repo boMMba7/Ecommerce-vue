@@ -1,7 +1,8 @@
 <template>
   <v-card>
     <v-navigation-drawer v-model="userDrawerOpen" temporary location="right">
-      <v-list-item prepend-icon="mdi-cart-outline" title="Cart"></v-list-item>
+      <v-card prepend-icon="mdi-cart-outline" title="Cart" color="accent">
+      </v-card>
 
       <v-divider></v-divider>
 

@@ -1,6 +1,6 @@
 <template>
-  <div class="icon" @click="navigateToSearch">
-    <v-icon>mdi-magnify</v-icon>
+  <div class="icon">
+    <v-btn icon="mdi-magnify" @click="navigateToSearch"> </v-btn>
   </div>
   <div class="icon">
     <v-btn
@@ -25,9 +25,7 @@
     </v-btn>
   </div>
   <div class="icon">
-    <v-btn icon @click="onAccounClick">
-      <v-icon>mdi-account-outline</v-icon>
-    </v-btn>
+    <v-btn icon="mdi-account-outline" @click="onAccounClick"> </v-btn>
   </div>
 </template>
 
@@ -101,6 +99,6 @@ export default {
 
 <style scoped>
 .icon {
-  padding: 12px;
+  padding-left: 12px;
 }
 </style>

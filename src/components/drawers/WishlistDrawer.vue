@@ -1,10 +1,11 @@
 <template>
   <v-card>
     <v-navigation-drawer v-model="userDrawerOpen" temporary location="right">
-      <v-list-item
+      <v-card
         prepend-icon="mdi-heart-outline"
         title="WishList"
-      ></v-list-item>
+        color="accent"
+      ></v-card>
 
       <v-divider></v-divider>
 

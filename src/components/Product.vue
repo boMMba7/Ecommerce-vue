@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card class="mx-auto my-3 pb-4" max-width="230" @click="goToProduct">
+    <v-card class="mx-auto my-3 pb-4" width="250" @click="goToProduct">
       <v-hover v-slot="{ isHovering, props }">
         <v-expand-transition>
           <v-img

@@ -6,6 +6,7 @@
         filter
         variant="outlined"
         @click="clicked(cat.title)"
+        color="primary"
       >
         {{ cat.title }}
       </v-chip>

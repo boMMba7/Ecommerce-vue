@@ -1,22 +1,24 @@
 <template>
   <v-container>
-    <v-text-field
-      v-model="searchQuery"
-      placeholder="Search"
-      outlined
-      @input="performSearch"
-      prepend-icon="mdi-magnify"
-      append-icon="mdi-filter"
-      @click:append="filterButton"
-      :messages="quantityResultText"
-    >
-    </v-text-field>
+    <v-card class="pa-4 mb-2">
+      <v-text-field
+        v-model="searchQuery"
+        placeholder="Type here to search..."
+        outlined
+        @input="performSearch"
+        prepend-icon="mdi-magnify"
+        append-icon="mdi-filter"
+        @click:append="filterButton"
+        :messages="quantityResultText"
+        bg-color="lightblue"
+      >
+      </v-text-field>
+      <v-row v-show="showFilter">
+        <SearchFilter />
+      </v-row>
+    </v-card>
 
-    <v-row v-show="showFilter">
-      <SearchFilter />
-    </v-row>
-
-    <v-card height="400" class="overflow-y-auto" :loading="getLoading">
+    <v-card height="600" :loading="getLoading">
       <v-list>
         <v-list-item
           v-for="(product, i) in getSearchProducts"
@@ -44,6 +46,7 @@
               <v-list-item-title>£ {{ product.price }}</v-list-item-title>
             </v-col>
           </v-row>
+          <v-divider class="mt-2" />
         </v-list-item>
       </v-list>
     </v-card>
