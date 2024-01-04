@@ -1,5 +1,7 @@
 <template>
-  <CartList />
+  <v-container>
+    <CartList />
+  </v-container>
 </template>
 
 <script>

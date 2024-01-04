@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <v-container>
     <Wishlist />
-  </div>
+  </v-container>
 </template>
 
 <script>
