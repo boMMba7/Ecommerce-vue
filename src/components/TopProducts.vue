@@ -1,6 +1,9 @@
 <template>
   <div v-show="products.length > 0">
-    <v-card :title="title" flat>
+    <v-card flat class="mt-10">
+      <v-card color="accent">
+        <v-card-title> Top Sells </v-card-title>
+      </v-card>
       <v-row>
         <v-col sm="3" v-for="product in products" :key="product.id">
           <Product :product="product" />
@@ -57,20 +60,8 @@ export default {
   computed: {
     ...mapGetters("category", { selectedCategory: "getSelectedCategory" }),
   },
-  watch: {
-    selectedCategory(newCaterory, oldCategory) {
-      if (newCaterory !== oldCategory) {
-        this.categoryId = newCaterory.id;
-        this.title = `Top sell on ${newCaterory.category_name}`;
-        this.getTopProducts();
-      }
-    },
-  },
+
   beforeMount() {
-    const randomIndex = Math.floor(
-      Math.random() * this.promotionalPhrases.length
-    );
-    this.title = this.promotionalPhrases[randomIndex];
     this.getTopProducts();
   },
 };

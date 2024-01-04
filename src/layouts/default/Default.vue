@@ -1,7 +1,6 @@
 <template>
   <v-app>
     <AppBar />
-    <ViewBannerName />
     <default-view />
     <UserDrawer />
     <CartDrawer />
@@ -14,7 +13,6 @@
 import DefaultView from "./View.vue";
 import Footer from "@/layouts/default/Footer.vue";
 import AppBar from "@/layouts/default/AppBar.vue";
-import ViewBannerName from "@/components/ViewBannerName.vue";
 import UserDrawer from "@/components/drawers/UserDrawer.vue";
 import CartDrawer from "@/components/drawers/CartDrawer.vue";
 import WishListDrawer from "@/components/drawers/WishlistDrawer.vue";

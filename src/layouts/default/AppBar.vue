@@ -24,13 +24,12 @@
       <template v-slot:prepend>
         <v-img v-show="!isCollapsed" src="../../assets/logo.png" width="120" />
       </template>
-      <div v-show="!isCollapsed">
-        <NavMenu
-          title="Home"
-          :menuItems="categoryMenuItems"
-          @click="navigateToHome"
-        />
-      </div>
+      <v-card flat color="transparent">
+        <v-btn @click="navigateTo('Home')"> Home </v-btn>
+      </v-card>
+      <v-card v-show="!isCollapsed" flat color="transparent">
+        <NavMenu title="Products" :menuItems="categoryMenuItems" />
+      </v-card>
 
       <template v-slot:append>
         <BadgeButtons />
@@ -75,8 +74,8 @@ export default {
   methods: {
     ...mapActions("drawer", ["openDrawer", "closeDrawer"]),
 
-    navigateToHome() {
-      this.$router.push({ name: "Home" });
+    navigateTo(destination) {
+      this.$router.push({ name: destination });
     },
     handleScroll() {
       // Check if the scrollTop is greater than a certain threshold to determine if it's collapsed

@@ -1,23 +1,26 @@
 <template>
-  <div>
-    <v-card :title="title" flat>
-      <v-row>
-        <v-col v-for="product in products" :key="product.id">
-          <Product :product="product" />
-        </v-col>
-      </v-row>
-    </v-card>
-  </div>
+  <v-card flat class="mt-10">
+    <v-row>
+      <v-col v-for="product in getSelectedCategoryProducts" :key="product.id">
+        <Product :product="product" />
+      </v-col>
+    </v-row>
+  </v-card>
 </template>
 
 <script>
 import Product from "./Product.vue";
+import { mapGetters } from "vuex";
 
 export default {
   data() {
     return {};
   },
-  props: ["title", "products"],
+  props: ["title"],
+
+  computed: {
+    ...mapGetters("category", ["getSelectedCategoryProducts"]),
+  },
 
   components: {
     Product,

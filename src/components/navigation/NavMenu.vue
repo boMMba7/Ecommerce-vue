@@ -6,7 +6,7 @@
       :close-on-content-click="false"
     >
       <template v-slot:activator="{ props }">
-        <v-btn variant="plain" v-bind="props" append-icon="mdi-chevron-down">
+        <v-btn v-bind="props" append-icon="mdi-chevron-down">
           {{ title }}
         </v-btn>
       </template>
@@ -32,6 +32,11 @@
 import { mapActions } from "vuex";
 
 export default {
+  data() {
+    return {
+      //
+    };
+  },
   props: ["title", "menuItems"],
 
   methods: {
@@ -40,6 +45,7 @@ export default {
     onItemClick(index) {
       const category = this.menuItems[index];
       this.selectedCategory(category);
+      this.$router.push({ name: "Category" });
     },
   },
 };
