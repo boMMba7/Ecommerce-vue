@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <v-card title="Wishlist" flat class="text-center" />
     <Wishlist />
   </v-container>
 </template>

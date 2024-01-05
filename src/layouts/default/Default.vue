@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <AppBar />
-    <default-view />
+    <default-view @click="closeAllDrawers()" />
     <UserDrawer />
     <CartDrawer />
     <WishListDrawer />
@@ -16,6 +16,7 @@ import AppBar from "@/layouts/default/AppBar.vue";
 import UserDrawer from "@/components/drawers/UserDrawer.vue";
 import CartDrawer from "@/components/drawers/CartDrawer.vue";
 import WishListDrawer from "@/components/drawers/WishlistDrawer.vue";
+import { mapActions } from "vuex";
 </script>
 
 <script>
@@ -30,6 +31,8 @@ export default {
     CartDrawer,
     WishListDrawer,
   },
-  methods: {},
+  methods: {
+    ...mapActions("drawer", ["closeAllDrawers"]),
+  },
 };
 </script>

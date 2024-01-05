@@ -6,7 +6,7 @@ const originalDrawerState = {
 };
 
 const state = () => ({
-  drawerStates: originalDrawerState,
+  drawerStates: { ...originalDrawerState },
 });
 
 //          MUTATION
@@ -20,7 +20,7 @@ const mutations = {
   },
 
   allDrawerClosed(state) {
-    state.drawerStates = originalDrawerState;
+    state.drawerStates = { ...originalDrawerState };
   },
 };
 

@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <v-card title="Checkout" flat class="text-center" />
     <CartList />
   </v-container>
 </template>
