@@ -16,16 +16,28 @@
         </v-btn>
       </v-col>
       <v-col>
-        <v-btn
-          prepend-icon="mdi-cart-outline"
-          class="mt-0"
-          size="small"
-          @click="handleaddCart"
-          color="lightblue"
-          block
-        >
-          Add to cart
-        </v-btn>
+        <div class="d-none d-sm-block">
+          <v-btn
+            prepend-icon="mdi-cart-outline"
+            class="mt-0"
+            size="small"
+            @click="handleaddCart"
+            color="lightblue"
+            block
+          >
+            Add to cart
+          </v-btn>
+        </div>
+        <div class="d-flex d-sm-none">
+          <v-btn
+            prepend-icon="mdi-cart-outline"
+            class="mt-0"
+            size="small"
+            @click="handleaddCart"
+            color="lightblue"
+            >Add</v-btn
+          >
+        </div>
       </v-col>
     </v-card>
   </v-container>
