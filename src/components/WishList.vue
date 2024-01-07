@@ -5,6 +5,16 @@
     :key="index"
     class="pa-2"
   >
+    <template v-slot:append>
+      <v-btn
+        @click="removeProductWishList(product.id)"
+        icon="mdi-delete-forever"
+        variant="outlined"
+        color="red"
+        width="30"
+        height="30"
+      />
+    </template>
     <transition-group name="fade">
       <v-row justify="start" align="center">
         <v-col xs="2" md="2">
@@ -13,7 +23,7 @@
         </v-col>
 
         <v-col xs="2" md="2">
-          <v-img :src="apiURL + product.imageurl" width="140" />
+          <v-img :src="apiURL + product.imageurl" width="140" maxHeight="140" />
         </v-col>
 
         <v-col xs="2" md="2">
@@ -26,19 +36,11 @@
         </v-col>
 
         <v-col xs="4" md="4">
-          <v-row justify="center" align="center">
+          <v-card-actions>
             <v-col>
               <AddButton :product="product" :cartOnly="true" />
             </v-col>
-            <v-col>
-              <v-btn
-                @click="removeProductWishList(product.id)"
-                icon="mdi-delete-forever"
-                variant="outlined"
-                color="red"
-              />
-            </v-col>
-          </v-row>
+          </v-card-actions>
         </v-col>
       </v-row>
     </transition-group>
@@ -60,12 +62,6 @@ export default {
   data() {
     return {
       apiURL: import.meta.env.VITE_API_URL,
-      colsDelete: 2,
-      colsImage: 1,
-      colsName: 2,
-      colsPrice: 2,
-      colsQuant: 2,
-      colsTotal: 3,
     };
   },
   computed: {

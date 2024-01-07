@@ -1,68 +1,47 @@
 <template>
   <v-card flat min-width="900">
-    <v-card color="accent" class="py-2">
-      <v-row>
-        <v-col :cols="colsDelete" align="center">
-          <h3>Delete</h3>
-        </v-col>
+    <v-card v-for="(product, i) in getProductsInCart" :key="i" class="py-5">
+      <template v-slot:append>
+        <v-btn
+          @click="remove(index)"
+          icon="mdi-delete-forever"
+          variant="outlined"
+          width="30"
+          height="30"
+          color="red"
+        />
+      </template>
+      <transition-group name="fade">
+        <v-row align="center">
+          <v-col xs="4" md="2">
+            <v-img
+              :src="apiURL + product.imageurl"
+              width="140"
+              maxHeight="140"
+            />
+          </v-col>
 
-        <v-col :cols="colsImage" align="center">
-          <h3>Image</h3>
-        </v-col>
+          <v-col xs="4" md="2">
+            <v-card-subtitle> Name</v-card-subtitle>
+            <v-card-title>{{ product.name }}</v-card-title>
+          </v-col>
 
-        <v-col :cols="colsName" align="center">
-          <h3>Name</h3>
-        </v-col>
+          <v-col xs="4" md="2">
+            <v-card-subtitle> Price</v-card-subtitle>
+            <v-card-title> £ {{ product.price.toFixed(2) }} </v-card-title>
+          </v-col>
 
-        <v-col :cols="colsPrice" align="center">
-          <h3>Price</h3>
-        </v-col>
-
-        <v-col :cols="colsQuant" align="center">
-          <h3>Quant.</h3>
-        </v-col>
-
-        <v-col :cols="colsTotal" align="center">
-          <h3>Total.</h3>
-        </v-col>
-      </v-row>
-    </v-card>
-    <v-card>
-      <v-list>
-        <transition-group name="fade">
-          <v-list-item
-            v-for="(product, i) in getProductsInCart"
-            :key="i"
-            class="py-5"
-          >
-            <v-row>
-              <v-col :cols="colsDelete" align="center">
-                <v-btn
-                  @click="remove(index)"
-                  icon="mdi-delete-forever"
-                  variant="outlined"
-                  width="30"
-                  height="30"
-                  color="red"
-                />
-              </v-col>
-              <v-col :cols="colsImage" align="center">
-                <v-img :src="apiURL + product.imageurl" />
-              </v-col>
-
-              <v-col :cols="colsName" align="center">
-                <v-list-item-title>{{ product.name }}</v-list-item-title>
-              </v-col>
-
-              <v-col :cols="colsPrice" align="center">
-                <v-list-item-title>
-                  £ {{ product.price.toFixed(2) }}
-                </v-list-item-title>
-              </v-col>
-
-              <v-col :cols="colsQuant" align="center">
-                <v-card flat>
-                  <template v-slot:append>
+          <v-col xs="4" md="2">
+            <v-card flat>
+              <v-card-subtitle> Quantity</v-card-subtitle>
+              <v-row align="center">
+                <v-col>
+                  <v-card-title>
+                    {{ product.quantity }}
+                  </v-card-title>
+                </v-col>
+                <v-col>
+                  <v-row>
                     <v-icon
                       @click="increaseQuantity(product.id)"
                       icon="mdi-plus"
@@ -70,8 +49,8 @@
                       size="20"
                       color="green"
                     />
-                  </template>
-                  <template v-slot:prepend>
+                  </v-row>
+                  <v-row>
                     <v-icon
                       @click="decriseQuantity(product.id)"
                       icon="mdi-minus"
@@ -79,23 +58,21 @@
                       size="20"
                       color="red"
                     />
-                  </template>
-                  <v-list-item-title class="mt-n8">
-                    {{ product.quantity }}
-                  </v-list-item-title>
-                </v-card>
-              </v-col>
+                  </v-row>
+                </v-col>
+              </v-row>
+            </v-card>
+          </v-col>
 
-              <v-col :cols="colsTotal" align="center">
-                <v-card-text>
-                  £ {{ (product.quantity * product.price).toFixed(2) }}
-                </v-card-text>
-              </v-col>
-            </v-row>
-            <v-divider class="mt-2" />
-          </v-list-item>
-        </transition-group>
-      </v-list>
+          <v-col xs="4" md="4">
+            <v-card-subtitle> Total</v-card-subtitle>
+            <v-card-title>
+              £ {{ (product.quantity * product.price).toFixed(2) }}
+            </v-card-title>
+          </v-col>
+        </v-row>
+        <v-divider class="mt-2" />
+      </transition-group>
     </v-card>
   </v-card>
   <v-card v-if="!hasProduct()" flat class="pa-15" align="center">
