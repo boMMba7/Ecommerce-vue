@@ -22,13 +22,30 @@
       </template>
 
       <template v-slot:prepend>
-        <v-img v-show="!isCollapsed" src="../../assets/logo.png" width="120" />
+        <v-img
+          v-show="!isCollapsed"
+          src="../../assets/logo.png"
+          width="120"
+          @click="navigateTo('Home')"
+        />
       </template>
-      <v-card flat color="transparent">
-        <v-btn @click="navigateTo('Home')"> Home </v-btn>
-      </v-card>
-      <v-card v-show="!isCollapsed" flat color="transparent">
-        <NavMenu title="Products" :menuItems="categoryMenuItems" />
+
+      <v-card
+        v-show="!isCollapsed"
+        flat
+        color="transparent"
+        class="d-none d-sm-block"
+      >
+        <v-card-text>
+          <v-row>
+            <v-col>
+              <v-btn @click="navigateTo('Home')"> Home </v-btn>
+            </v-col>
+            <v-col>
+              <NavMenu title="Categories" :menuItems="categoryMenuItems" />
+            </v-col>
+          </v-row>
+        </v-card-text>
       </v-card>
 
       <template v-slot:append>

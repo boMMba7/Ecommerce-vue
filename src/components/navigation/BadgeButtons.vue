@@ -1,32 +1,49 @@
 <template>
-  <div class="icon">
-    <v-btn icon="mdi-magnify" @click="navigateToSearch"> </v-btn>
-  </div>
-  <div class="icon">
-    <v-btn
-      icon
-      @click="navigateToWishlist"
-      @mouseover="heartMouseOuver"
-      @mouseleave="heartMouseLeave"
-    >
-      <v-icon class="mr-n3">mdi-heart-outline</v-icon>
-      <v-badge inline :content="heartNumber" color="red"></v-badge>
-    </v-btn>
-  </div>
-  <div class="icon">
-    <v-btn
-      icon
-      @click="navigateToCheckout"
-      @mouseover="cartMouseOver"
-      @mouseleave="cartMouseLeave"
-    >
-      <v-icon class="mr-n3">mdi-cart-outline</v-icon>
-      <v-badge inline :content="cartNumber" color="red"></v-badge>
-    </v-btn>
-  </div>
-  <div class="icon">
-    <v-btn icon="mdi-account-outline" @click="onAccounClick"> </v-btn>
-  </div>
+  <v-card flat class="d-none d-sm-block" color="transparent">
+    <v-row>
+      <v-col>
+        <v-btn icon="mdi-magnify" @click="navigateToSearch"> </v-btn>
+      </v-col>
+      <v-col>
+        <v-btn
+          icon
+          @click="navigateToWishlist"
+          @mouseover="heartMouseOuver"
+          @mouseleave="heartMouseLeave"
+        >
+          <v-icon>mdi-heart-outline</v-icon>
+          <v-badge
+            class="ms-n3"
+            inline
+            :content="heartNumber"
+            color="red"
+          ></v-badge>
+        </v-btn>
+      </v-col>
+      <v-col>
+        <v-btn
+          icon
+          @click="navigateToCheckout"
+          @mouseover="cartMouseOver"
+          @mouseleave="cartMouseLeave"
+        >
+          <v-icon>mdi-cart-outline</v-icon>
+          <v-badge
+            class="ms-n3"
+            inline
+            :content="cartNumber"
+            color="red"
+          ></v-badge>
+        </v-btn>
+      </v-col>
+      <v-col>
+        <v-btn icon="mdi-account-outline" @click="onAccounClick"> </v-btn>
+      </v-col>
+    </v-row>
+  </v-card>
+  <v-card flat class="d-flex d-sm-none" color="transparent">
+    <v-btn icon="mdi-menu" @click="onMobileMenuClick"> </v-btn>
+  </v-card>
 </template>
 
 <script>
@@ -46,10 +63,13 @@ export default {
     userDrawerOpen() {
       return this.$store.getters["drawer/isDrawerOpen"]("user");
     },
+    mobileMenuDrawerOpen() {
+      return this.$store.getters["drawer/isDrawerOpen"]("mobileMenu");
+    },
   },
 
   methods: {
-    ...mapActions("drawer", ["openDrawer", "closeDrawer"]),
+    ...mapActions("drawer", ["openDrawer", "closeDrawer", "closeAllDrawers"]),
     navigateToCheckout() {
       this.$router.push({ name: "Checkout" });
     },
@@ -80,6 +100,14 @@ export default {
         this.openDrawer("user");
       }
     },
+
+    onMobileMenuClick() {
+      if (this.mobileMenuDrawerOpen) {
+        this.closeAllDrawers();
+      } else {
+        this.openDrawer("mobileMenu");
+      }
+    },
   },
 
   watch: {
@@ -96,9 +124,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.icon {
-  padding-left: 12px;
-}
-</style>

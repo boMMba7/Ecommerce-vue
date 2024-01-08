@@ -3,6 +3,7 @@ const originalDrawerState = {
   user: false,
   cart: false,
   wishlist: false,
+  mobileMenu: false,
 };
 
 const state = () => ({
