@@ -1,7 +1,3 @@
-import user from "@/api/user";
-import { useApi } from "@/compositionFunctions/useApi";
-import { apiCallBegan } from "../actions/api";
-
 //          INITIAL STATE
 const state = () => ({
   user: null,

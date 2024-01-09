@@ -47,8 +47,8 @@
     <v-divider />
   </v-card>
 
-  <v-card v-if="!hasProduct()" flat class="pa-15" align="center">
-    <v-card-title>Cart is empty...</v-card-title>
+  <v-card v-if="!hasProduct()" flat class="pa-15" height="600" align="center">
+    <v-card-title>Wishlist is empty...</v-card-title>
     <br />
     <router-link to="./"> Back to Home Page </router-link>
   </v-card>

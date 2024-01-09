@@ -16,7 +16,7 @@
             class="ms-n3"
             inline
             :content="heartNumber"
-            color="red"
+            :color="heartNumber === 0 ? 'gray' : 'red'"
           ></v-badge>
         </v-btn>
       </v-col>
@@ -32,7 +32,7 @@
             class="ms-n3"
             inline
             :content="cartNumber"
-            color="red"
+            :color="cartNumber === 0 ? 'gray' : 'red'"
           ></v-badge>
         </v-btn>
       </v-col>

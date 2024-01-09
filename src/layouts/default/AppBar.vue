@@ -5,16 +5,7 @@
     class="max-auto fixed-app-bar"
     :loading="getLoading"
   >
-    <v-app-bar
-      color="teal-darken"
-      fixed
-      scroll-behavior="collapse  elevate"
-      @scroll="handleScroll"
-      :style="{
-        transition: 'max-width 0.5s',
-        'max-width': isCollapsed ? '260px' : '100%',
-      }"
-    >
+    <v-app-bar color="teal-darken" fixed scroll-behavior="  elevate">
       <template v-slot:image>
         <v-img
           gradient="to top right, rgba(20,198,255,.8), rgba(130,177,255,.8)"
