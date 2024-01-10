@@ -36,6 +36,7 @@ const dynamicApiFunc = async (apiName) => {
   const apiModules = {
     auth: () => import("@/api/auth"),
     userApi: () => import("@/api/user"),
+    order: () => import("@/api/order"),
   };
 
   const moduleImport = apiModules[apiName];
